@@ -10,8 +10,6 @@ class ShirtsController < ApplicationController
   # GET /shirts.json
   def index
     @shirts = @scope.all
-    puts @shirts.inspect
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @shirts }
