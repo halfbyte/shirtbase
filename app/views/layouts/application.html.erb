@@ -17,11 +17,11 @@
       <h1><a href="/">TSHIRTS</a></h1>
       <section class="user-nav">
         <% if signed_in? %>
-          signed in as <%= current_user.nickname %>
+          signed in as <%= user_link(current_user) %>
           /
           <%= link_to "sign out", signout_path %>
           /
-          <%= link_to "add your tee", new_shirt_path %>
+          <%= link_to "add your tee", new_user_shirt_path(current_user) %>
         <% else %>
           <%= link_to "sign in with twitter", "/auth/twitter" %>
         <% end %>

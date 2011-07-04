@@ -9,7 +9,7 @@ class ShirtsController < ApplicationController
   # GET /shirts
   # GET /shirts.json
   def index
-    @shirts = @scope.all
+    @shirts = @scope.order("created_at DESC").all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @shirts }
@@ -30,6 +30,9 @@ class ShirtsController < ApplicationController
   # GET /shirts/new
   # GET /shirts/new.json
   def new
+    if @user.nil?
+      redirect_to new_user_shirt_path(current_user) and return
+    end
     @shirt = Shirt.new
 
     respond_to do |format|
@@ -46,12 +49,13 @@ class ShirtsController < ApplicationController
   # POST /shirts
   # POST /shirts.json
   def create
-    @shirt = @scope.new(params[:shirt])
+    @shirt = Shirt.new(params[:shirt])
     if params[:transloadit]
       image = ShirtImage.from_transloadit(JSON.parse(params[:transloadit]))
       @shirt.shirt_images << image if image
     end
     @shirt.user = current_user
+    @shirt.owners << current_user
 
     respond_to do |format|
       if @shirt.save
