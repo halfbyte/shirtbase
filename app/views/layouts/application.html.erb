@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shirtbase</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "http://assets.transloadit.com/js/jquery.transloadit2.js" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <section class="header">
+    <a href="/"><h1>The TShirt Database project</h1></a>
+    <section class="user-nav">
+      <% if signed_in? %>
+        Welcome <%= current_user.name %>!
+        <%= link_to "Sign Out", signout_path %>
+      <% else %>
+        <%= link_to "Sign in with Twitter", "/auth/twitter" %>
+      <% end %>
+    </section>
+  </section>
+  <section class="content">
+    <%= yield %>
+  </section>
+  
+  <section class="foote">
+    <p>The T-Shirt Database</p>
+    <p>&copy; Jan Krutisch</p>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  shirt_id: 1
+  thumbnail_url: MyString
+  medium_url: MyString
+  large_url: MyString
+
+two:
+  shirt_id: 1
+  thumbnail_url: MyString
+  medium_url: MyString
+  large_url: MyString

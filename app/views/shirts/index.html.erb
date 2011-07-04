@@ -1,0 +1,51 @@
+<%- if @user -%>
+  <h1>Shirts from <%= @user.name %></h1>
+<%- else -%>
+  <h1>Latest shirts from the shirties</h1>
+<%- end -%>
+
+<table>
+  <tr>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Uploader</th>
+    <th>Owners</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shirts.each do |shirt| %>
+  <tr>
+    <td>
+      <%- if shirt.shirt_images.first -%>
+        <%= image_tag shirt.shirt_images.first.thumbnail_url %>
+      <%- end -%>
+    </td>
+    <td><%= shirt.name %></td>
+    <td><%= shirt.description %></td>
+    <td>
+      <%- if shirt.user -%>
+        <%= link_to shirt.user.name, user_shirts_path(shirt.user) %>
+      <%- end -%>
+    </td>
+    <td>
+      <ul>
+        <%- shirt.owners.each do |user| -%>
+          <li><%= link_to shirt.user.name, user_shirts_path(shirt.user) %></li>
+        <%- end -%>
+      </ul>
+    </td>
+    <%- if @user && shirt.user == current_user -%>
+      <td><%= link_to 'Show', shirt %></td>
+      <td><%= link_to 'Edit', edit_shirt_path(shirt) %></td>
+      <td><%= link_to 'Destroy', shirt, confirm: 'Are you sure?', method: :delete %></td>
+    <%- end -%>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Shirt', new_shirt_path %>

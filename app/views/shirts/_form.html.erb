@@ -1,0 +1,33 @@
+<%= form_for(@shirt, :html => {:class => 'shirt-upload'}) do |f| %>
+  <% if @shirt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shirt.errors.count, "error") %> prohibited this shirt from being saved:</h2>
+
+      <ul>
+      <% @shirt.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= label_tag :image, "Photo" %>
+    <%= file_field_tag :image %>
+    <%= hidden_field_tag :params, { auth: {key: "617f5b25c75f45f7a47bf6445527c2fb"}, template_id: "42cb74a7389c45da9e3739d63ff06cc7"}.to_json %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add your shirt" %>
+  </div>
+  
+  
+  
+<% end %>

@@ -1,0 +1,33 @@
+{
+  "steps": {
+    "large": {
+      "use": ":original",
+      "robot": "/image/resize",
+      "resize_strategy": "fit",
+      "width": 720,
+      "height": 720,
+   },
+   "medium": {
+      "use": ":original",
+      "robot": "/image/resize",
+      "resize_strategy": "fit",
+      "width": 320,
+      "height": 320,
+   },
+    "thumbnail": {
+      "use": ":original",
+      "robot": "/image/resize",
+      "resize_strategy": "crop",
+      "width": 48,
+      "height": 48,
+      "strip": true,
+    },
+    "export": {
+      "use": ["thumbnail", "medium", "large"],
+      "robot": "/s3/store",
+      "key": "0BCRK8ZF0WS5EXBV6182",
+      "secret": "q/Dl5+qKh9cK2vdt4z3up+K2opM0T/okYHtq/ePf",
+      "bucket": "shirtbase-images"
+    }
+  }
+}
