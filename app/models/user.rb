@@ -10,6 +10,14 @@ class User < ActiveRecord::Base
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.name = auth["user_info"]["name"]
+      user.nickname = auth["user_info"]["nickname"]
+      user.access_token = auth["credentials"]["token"]
+      user.access_token_secret = auth["credentials"]["secret"]
     end
   end
+  
+  def to_param
+    nickname
+  end
+  
 end

@@ -18,14 +18,17 @@ end
 
 # Asset template engines
 gem 'sass-rails', "~> 3.1.0.rc"
+gem 'compass', :git => 'https://github.com/chriseppstein/compass.git', :branch  => 'rails31'
+gem 'eleven40'
 gem 'coffee-script'
 gem 'uglifier'
 
 gem 'jquery-rails'
 
 gem 'omniauth'
-
 gem 'haml'
+
+gem "acts-as-taggable-on"
 
 
 

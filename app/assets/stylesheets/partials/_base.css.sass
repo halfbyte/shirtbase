@@ -1,0 +1,88 @@
+=background-size($x, $y)
+  -webkit-background-size: $x $y
+  -moz-background-size: $x $y
+  -o-background-size: $x $y
+  background-size: $x $y
+
+
+
+=pinstripe($background:#333, $pinstripe:#555)
+  background-color: $background
+  background-image: -webkit-gradient(linear, 100% 0%, 0% 100%, from(transparent), color-stop(0.15, transparent), color-stop(0.15, $pinstripe), color-stop(0.50, $pinstripe), color-stop(0.50, transparent), color-stop(0.65, transparent), color-stop(0.65, $pinstripe), to($pinstripe))
+  background-image: -moz-linear-gradient(100% 0%, transparent 0.15, $pinstripe 0.15, $pinstripe 0.50, transparent 0.50, transparent 0.65, $pinstripe 0.65)
+  +background-size(10px, 10px)
+
+body
+  background: #000
+  color: #EEE
+  font-family: "Helvetica Neue", Helvetica, sans-serif
+  a:link
+    text-decoration: none
+    color: #88F
+  a:visited
+    color: #CCF
+  a:hover
+    color: #CCF
+    text-decoration: underline
+
+.container
+  padding: 2em 0
+  background: #333
+  +eleven40-container
+  .main
+    +eleven40-row
+    .content
+      +eleven40-twelvecol
+      +eleven40-last
+
+.header
+  +eleven40-container
+  +pinstripe(#333, #555)
+  .header-content
+    +eleven40-row
+    h1
+      font-size: 5em
+      font-weight: 400
+      +eleven40-eightcol
+      a
+        text-decoration: none
+        color: yellow
+    .user-nav
+      +eleven40-fourcol
+      +eleven40-last
+      text-align: right
+      line-height: 3em
+  border-bottom: 1px solid #F0F
+
+.footer
+  +eleven40-container
+  padding-top: 2em
+  padding-bottom: 2em
+  border-top: 1px solid #F0F
+  background: #000
+  color: #ccc
+  .footer-text
+    +eleven40-row
+
+
+.content
+  h2
+    font-weight: 400
+    font-size: 3em
+    text-transform: uppercase
+    text-align: right
+  .shirt
+    margin-bottom: 1em
+    h3
+      +eleven40-twelvecol
+      text-transform: uppercase
+      font-size: 2em
+      font-weight: 100
+      margin-bottom: 0.5em
+    .image-and-meta
+      +eleven40-eightcol
+      margin-bottom: 1em
+      font-style: italic
+    .description
+      +eleven40-fourcol
+      +eleven40-last

@@ -3,30 +3,44 @@
 <head>
   <title>Shirtbase</title>
   <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "smallscreen", :media => "only screen and (max-width: 1023px)" %>
+  <%= stylesheet_link_tag    "mobile", :media => "handheld, only screen and (max-width: 767px)" %>
+  
+  
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "http://assets.transloadit.com/js/jquery.transloadit2.js" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <section class="header">
-    <a href="/"><h1>The TShirt Database project</h1></a>
-    <section class="user-nav">
-      <% if signed_in? %>
-        Welcome <%= current_user.name %>!
-        <%= link_to "Sign Out", signout_path %>
-      <% else %>
-        <%= link_to "Sign in with Twitter", "/auth/twitter" %>
-      <% end %>
+    <div class="header-content">
+      <h1><a href="/">TSHIRTS</a></h1>
+      <section class="user-nav">
+        <% if signed_in? %>
+          signed in as <%= current_user.nickname %>
+          /
+          <%= link_to "sign out", signout_path %>
+          /
+          <%= link_to "add your tee", new_shirt_path %>
+        <% else %>
+          <%= link_to "sign in with twitter", "/auth/twitter" %>
+        <% end %>
+      </section>
+    </div>
+  </section>
+  <div class="container">
+    <section class="main">
+      <div class="content">
+      <%= yield %>
+      </div>
     </section>
-  </section>
-  <section class="content">
-    <%= yield %>
-  </section>
   
-  <section class="foote">
-    <p>The T-Shirt Database</p>
-    <p>&copy; Jan Krutisch</p>
+  </div>
+  <section class="footer">
+    <div class="footer-text">
+      <p>The T-Shirt Database</p>
+      <p>&copy; Jan Krutisch</p>
+    </div>
   </section>
-
 </body>
 </html>

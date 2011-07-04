@@ -1,7 +1,7 @@
 <%= form_for(@shirt, :html => {:class => 'shirt-upload'}) do |f| %>
   <% if @shirt.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@shirt.errors.count, "error") %> prohibited this shirt from being saved:</h2>
+      <h4><%= pluralize(@shirt.errors.count, "error") %> prohibited this shirt from being saved:</h4>
 
       <ul>
       <% @shirt.errors.full_messages.each do |msg| %>
@@ -18,6 +18,14 @@
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :url, "Source URL" %><br />
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :tag_list, "Tags" %><br />
+    <%= f.text_field :tag_list %>
   </div>
   <div class="field">
     <%= label_tag :image, "Photo" %>

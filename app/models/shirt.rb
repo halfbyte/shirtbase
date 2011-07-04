@@ -4,6 +4,8 @@ class Shirt < ActiveRecord::Base
   has_many :owners, :through => :shirt_ownerships, :source => :user
   belongs_to :user
   
+  acts_as_taggable
+  
   validates :name, :presence => true
   
 end

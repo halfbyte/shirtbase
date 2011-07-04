@@ -57,7 +57,7 @@ class ShirtsController < ApplicationController
 
     respond_to do |format|
       if @shirt.save
-        format.html { redirect_to @shirt, notice: 'Shirt was successfully created.' }
+        format.html { redirect_to user_shirts_path(current_user), notice: 'Shirt was successfully created.' }
         format.json { render json: @shirt, status: :created, location: @shirt }
       else
         format.html { render action: "new" }
@@ -77,7 +77,7 @@ class ShirtsController < ApplicationController
 
     respond_to do |format|
       if @shirt.update_attributes(params[:shirt])
-        format.html { redirect_to @shirt, notice: 'Shirt was successfully updated.' }
+        format.html { redirect_to user_shirts_path(current_user), notice: 'Shirt was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -100,7 +100,7 @@ class ShirtsController < ApplicationController
 
   def load_scope
     if params[:user_id]
-      @user = User.find(params[:user_id])
+      @user = User.find_by_nickname(params[:user_id])
       @scope = @user.shirts
     else
       @scope = Shirt

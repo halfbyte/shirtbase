@@ -1,0 +1,37 @@
+- if @user
+  %h2 #{user_link(@user)}'s Shirts
+- if @tag
+  %h2 Shirts tagged with #{@tag}
+- else
+  %h2 Latest shirts from the shirties
+
+- @shirts.each do |shirt|
+  %article.shirt
+    %h3= shirt.name
+    .image-and-meta
+      - if shirt.shirt_images.first
+        = image_tag shirt.shirt_images.first.large_url
+      %p
+        posted #{time_ago_in_words shirt.created_at} ago by
+        - if shirt.user
+          = user_link(shirt.user)
+        - else
+          anonymous
+        - unless shirt.tag_list.empty?
+          &mdash;
+          tagged with
+          = raw shirt.tag_list.map{|tag| link_to h(tag), tag_path(tag)}.join(", ")
+      %p
+        - if shirt.url
+          = link_to shirt.url, shirt.url
+      - if shirt.user && shirt.user == current_user
+        %p
+          = link_to "[EDIT]", edit_shirt_path(shirt)
+    
+    .description
+      = simple_format(shirt.description)
+    
+    .image-and-meta
+    .textual
+      
+      

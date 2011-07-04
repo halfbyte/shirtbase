@@ -6,6 +6,8 @@ Shirtbase::Application.routes.draw do
   resources :users, :only => :index do
     resources :shirts
   end
+  
+  resources :tags
 
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout
