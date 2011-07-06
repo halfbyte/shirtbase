@@ -1,13 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
-one:
-  shirt_id: 1
-  thumbnail_url: MyString
-  medium_url: MyString
-  large_url: MyString
-
-two:
-  shirt_id: 1
-  thumbnail_url: MyString
-  medium_url: MyString
-  large_url: MyString
+standard:
+  shirt: standard
+  thumbnail_url: http://example.com/thumbnail_image.gif
+  medium_url: http://example.com/medium_image.gif
+  large_url: http://example.com/large_image.gif

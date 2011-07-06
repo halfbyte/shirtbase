@@ -1,11 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
-one:
-  provider: MyString
-  uid: MyString
-  name: MyString
-
-two:
-  provider: MyString
-  uid: MyString
-  name: MyString
+standard:
+  provider: twitter
+  uid: halfbyte
+  name: Jan Krutisch
+  nickname: halfbyte

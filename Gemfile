@@ -30,8 +30,6 @@ gem 'haml'
 
 gem "acts-as-taggable-on"
 
-
-
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -44,4 +42,5 @@ gem "acts-as-taggable-on"
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'shoulda'
 end
