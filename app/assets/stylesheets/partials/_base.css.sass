@@ -4,6 +4,7 @@
   -o-background-size: $x $y
   background-size: $x $y
 
+$font: "Helvetica Neue", Helvetica, sans-serif
 
 
 =pinstripe($background:#333, $pinstripe:#555)
@@ -14,8 +15,8 @@
 
 body
   background: #000
-  color: #EEE
-  font-family: "Helvetica Neue", Helvetica, sans-serif
+  color: #fff
+  font-family: $font
   a:link
     text-decoration: none
     color: yellow
@@ -127,3 +128,30 @@ body
         font-style: italic
   p
     margin-bottom: 1em
+
+
+  .shirt-upload
+    +eleven40-eightcol
+    label
+      display: block
+      margin: 0
+      padding: 0
+      line-height: 0.8em
+      color: #ccc
+      font-size: 2em
+    input[type='text'], textarea, input[type='file']
+      font-size: 1.2em
+      font-family: $font
+      width: 90%
+      border: none
+      padding: 0.5em
+      background: #ccc
+      &:focus
+        background: #fff
+      margin-bottom: 1em
+      &.large
+        font-size: 2em
+      
+  .explanation
+    +eleven40-fourcol
+    +eleven40-last

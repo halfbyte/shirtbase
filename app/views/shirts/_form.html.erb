@@ -12,30 +12,49 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :url, "Source URL" %><br />
-    <%= f.text_field :url %>
-  </div>
-  <div class="field">
-    <%= f.label :tag_list, "Tags" %><br />
-    <%= f.text_field :tag_list %>
+    <%= f.label :name %>
+    <%= f.text_field :name, :class => 'large', :length => 40, :placeholder => 'The one with the unicorns and the rainbow' %>
   </div>
   <div class="field">
     <%= label_tag :image, "Photo" %>
     <%= file_field_tag :image %>
     <%= hidden_field_tag :params, { auth: {key: "617f5b25c75f45f7a47bf6445527c2fb"}, template_id: "42cb74a7389c45da9e3739d63ff06cc7"}.to_json %>
   </div>
-  <div class="actions">
-    <%= f.submit "Add your shirt" %>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, :placeholder => 'Please tell us the story of this shirt', :rows => 5 %>
   </div>
-  
-  
-  
+  <div class="field">
+    <%= f.label :url, "Source URL" %>
+    <%= f.text_field :url, :placeholder => 'http://example.com' %>
+  </div>
+  <div class="field">
+    <%= f.label :tag_list, "Tags" %>
+    <%= f.text_field :tag_list, :placeholder => 'comma, separated, tags' %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>
+<div class="explanation">
+  <p>Please give your T-Shirt a comprehensive and concise name</p>
+  <p>It's okay to upload photos in portrait or landscape, but most of the time, portrait gives better results</p>
+  <p>
+    Please don't upload unprocessed 12 Megapixel jpegs directly from your Digicam. We pay for bandwith and although we shrink down
+    the images before storing them, we have to pay for the data transfer of the fat ass 12 MP image to the image upload service. Which hurts.
+  </p>
+  <p>
+    If you want to give your t-shirt a description, try to tell an interesting story, for example, where you bought (or got) the shirt, 
+    how you found it or if there's any episode that you connect with wearing this t-shirt.
+  </p>
+  <p>If you bought the shirt online, feel free to add a source url to the product page of the online shop if possible. Somewhere 
+    in the future this might enable us to start affiliate programs, which would be awesome to pay the server bills. In the meantime,
+    it allows other people to shop for the t-shirt.
+  </p>
+  <p>
+    We will hopefully be able to support you a bit more on the tagging front. So far, please separate tags with commas, and try to not 
+    tag like a dizee rascal. Colors make great tags, vendors (tshirtstore, threadless, cafepress, rumpfkluft etc.) make great tags and
+    genres (funny, remix, art, type) make great tags. Your mom doesn't make a great tag.    
+  </p>
+</div>
