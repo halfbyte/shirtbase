@@ -10,6 +10,8 @@
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "http://assets.transloadit.com/js/jquery.transloadit2.js" %>
   <%= csrf_meta_tags %>
+  <link rel="alternate" type="application/atom+xml" href="<%= @feed_url || shirts_url(:format => :atom) %>">
+  
 </head>
 <body>
   <section class="header">
@@ -25,6 +27,9 @@
         <% else %>
           <%= link_to "sign in with twitter", "/auth/twitter" %>
         <% end %>
+        <navigation class="feed-links">
+          <%= link_to "ATOM", @feed_url || shirts_url(:format => :atom), :class => 'atom-link' %>
+        </navigation>
       </section>
     </div>
   </section>

@@ -9,10 +9,11 @@ class ShirtsController < ApplicationController
   # GET /shirts
   # GET /shirts.json
   def index
-    @shirts = @scope.order("created_at DESC").all
+    @shirts = @scope.order("created_at DESC")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @shirts }
+      format.atom { @shirts = @shirts.limit(20) }
     end
   end
 
@@ -104,6 +105,7 @@ class ShirtsController < ApplicationController
     if params[:user_id]
       @user = User.find_by_nickname(params[:user_id])
       @scope = @user.shirts
+      @feed_url = user_shirts_url(@user, :format => :atom)
     else
       @scope = Shirt
     end    

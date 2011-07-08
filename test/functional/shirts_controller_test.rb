@@ -9,6 +9,23 @@ class ShirtsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:shirts)
   end
+  test "should get index as subresource" do
+    get :index, :user_id => users(:standard).to_param
+    assert_response :success
+    assert_not_nil assigns(:shirts)
+  end
+  test "should get index as atom" do
+    get :index, :format => "atom"
+    assert_response :success
+    assert_not_nil assigns(:shirts)
+  end
+  test "should get index as atom as subresource" do
+    get :index, :user_id => users(:standard).to_param, :format => "atom"
+    assert_response :success
+    assert_not_nil assigns(:shirts)
+  end
+
+
   test "should show shirt" do
     get :show, id: @shirt.to_param
     assert_response :success
@@ -19,7 +36,7 @@ class ShirtsControllerTest < ActionController::TestCase
       sign_in_as(users(:standard))
     end
     should "should get new" do
-      get :new, :user_id => users(:standard).to_param
+      get :new, :user_id => users(:standard).to_param #.to_param
       assert_response :success
     end
 
