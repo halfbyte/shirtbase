@@ -11,6 +11,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    RedCloth (4.2.7)
     actionmailer (3.1.0.rc4)
       actionpack (= 3.1.0.rc4)
       mail (~> 2.3.0)
@@ -190,6 +191,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   acts-as-taggable-on
   coffee-script
   compass!

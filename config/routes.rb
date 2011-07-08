@@ -12,7 +12,11 @@ Shirtbase::Application.routes.draw do
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout
 
-  root :to => "shirts#index"
+  root :to => "Shirts#index"
+  
+  match "/imprint" => "StaticPages#imprint", :as => 'imprint'
+  match "/data-retention" => "StaticPages#data_retention", :as => 'data_retention'
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
