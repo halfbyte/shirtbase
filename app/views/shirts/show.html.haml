@@ -1,0 +1,25 @@
+%article.shirt
+  %h2= link_to @shirt.name, @shirt
+  .image-and-meta
+    - if @shirt.shirt_images.first
+      = link_to image_tag(@shirt.shirt_images.first.large_url), @shirt
+    %p
+      posted #{time_ago_in_words @shirt.created_at} ago by
+      - if @shirt.user
+        = user_link(@shirt.user)
+      - else
+        anonymous
+      - unless @shirt.tag_list.empty?
+        &mdash;
+        tagged with
+        = raw @shirt.tag_list.map{|tag| link_to h(tag), tag_path(tag)}.join(", ")
+    %p
+      - if @shirt.url
+        = link_to @shirt.url, @shirt.url
+    - if @shirt.user && @shirt.user == current_user
+      %p
+        = link_to "[EDIT]", edit_shirt_path(@shirt)
+  
+  .description
+    = simple_format(@shirt.description)
+        

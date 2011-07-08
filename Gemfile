@@ -28,6 +28,8 @@ gem 'jquery-rails'
 gem 'omniauth'
 gem 'haml'
 
+gem "friendly_id", "~> 3.3.0.alpha2"
+
 gem "acts-as-taggable-on"
 
 # Use unicorn as the web server

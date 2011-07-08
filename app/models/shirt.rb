@@ -7,5 +7,7 @@ class Shirt < ActiveRecord::Base
   acts_as_taggable
   
   validates :name, :presence => true
+
+  has_friendly_id :name, :use_slug => true
   
 end

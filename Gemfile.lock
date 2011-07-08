@@ -45,6 +45,7 @@ GEM
     addressable (2.2.4)
     ansi (1.3.0)
     arel (2.1.3)
+    babosa (0.3.5)
     bcrypt-ruby (2.1.4)
     builder (3.0.0)
     chunky_png (1.2.0)
@@ -63,6 +64,8 @@ GEM
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
       rack (>= 1.1.0, < 2)
+    friendly_id (3.3.0.alpha2)
+      babosa (~> 0.3.0)
     fssm (0.2.7)
     haml (3.1.2)
     hike (1.1.0)
@@ -191,6 +194,7 @@ DEPENDENCIES
   coffee-script
   compass!
   eleven40
+  friendly_id (~> 3.3.0.alpha2)
   haml
   jquery-rails
   omniauth
