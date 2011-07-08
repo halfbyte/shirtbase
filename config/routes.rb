@@ -1,6 +1,8 @@
 Shirtbase::Application.routes.draw do
 
 
+  get "home/index"
+
   resources :shirts
   
   resources :users, :only => :index do
@@ -12,7 +14,7 @@ Shirtbase::Application.routes.draw do
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout
 
-  root :to => "Shirts#index"
+  root :to => "Home#index"
   
   match "/imprint" => "StaticPages#imprint", :as => 'imprint'
   match "/data-retention" => "StaticPages#data_retention", :as => 'data_retention'
