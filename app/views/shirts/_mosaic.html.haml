@@ -1,13 +1,16 @@
 .shirt-mosaic
-  - @shirts.each_with_index do |shirt, counter|
-    .mosaic-shirt{:class => (counter % 4 == 3) && 'last' }
-      %h3= link_to shirt.name, shirt
-      = link_to image_tag(shirt.shirt_images.first.large_url), shirt
-      .meta-author
-        #{time_ago_in_words shirt.created_at} ago by
-        - if shirt.user
-          = user_link(shirt.user)
-        - else
-          anonymous
-      .meta-tags
-        = raw shirt.tag_list.map{|tag| link_to h(tag), tag_path(tag)}.join(", ")
+  - @shirts.each_slice(4) do |slice|
+    .mosaic-row
+      - slice.each_with_index do |shirt, counter|
+        .mosaic-shirt{:class => (counter % 4 == 3) && 'last' }
+          %h3= link_to shirt.name, shirt
+          - unless shirt.shirt_images.empty?
+            = link_to image_tag(shirt.shirt_images.first.large_url), shirt
+          .meta-author
+            #{time_ago_in_words shirt.created_at} ago by
+            - if shirt.user
+              = user_link(shirt.user)
+            - else
+              anonymous
+          .meta-tags
+            = raw shirt.tag_list.map{|tag| link_to h(tag), tag_path(tag)}.join(", ")
