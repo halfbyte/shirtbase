@@ -1,8 +1,11 @@
 - if @user
   %h2 #{user_link(@user)}'s Shirts
+  - @page_title = "#{@user.nickname}'s Shirts"
 - elsif @tag
   %h2 Shirts tagged with #{@tag}
+  - @page_title = "Shirts tagged with #{@tag}"
 - else
   %h2 Latest shirts from the shirties
+  - @page_title = "Latest shirts from the shirties"
 
 = render 'shirts/mosaic'
