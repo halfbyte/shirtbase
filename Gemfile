@@ -36,6 +36,8 @@ gem "RedCloth"
 
 gem "heroku"
 
+gem "transloadit"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -49,4 +51,5 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
   gem 'shoulda'
+  gem 'mocha'
 end

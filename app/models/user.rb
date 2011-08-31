@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   
   has_many :created_shirts, :foreign_key => :user_id, :class_name => "Shirt"
   
+  before_create :ensure_mailbox
   
   def self.create_with_omniauth(auth)
     create! do |user|
@@ -18,6 +19,17 @@ class User < ActiveRecord::Base
   
   def to_param
     nickname
+  end
+  
+private
+
+  def ensure_mailbox
+    return if mailbox.present?
+    token = ""
+    begin 
+      token = Token.readable(8)
+    end while User.find_by_mailbox(token)
+    self.mailbox = token
   end
   
 end

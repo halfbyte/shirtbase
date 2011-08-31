@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110708064217) do
+ActiveRecord::Schema.define(:version => 20110830212838) do
+
+  create_table "favorites", :force => true do |t|
+    t.integer  "shirt_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "shirt_images", :force => true do |t|
     t.integer  "shirt_id"
@@ -77,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20110708064217) do
     t.text     "description"
     t.string   "access_token"
     t.string   "access_token_secret"
+    t.string   "mailbox"
   end
 
 end

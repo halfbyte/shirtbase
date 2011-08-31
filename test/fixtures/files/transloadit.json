@@ -1,0 +1,29 @@
+{
+  "ok":"ASSEMBLY_COMPLETED",
+  "message":"The assembly was successfully completed.",
+  "assembly_id":"ed70803b0ee2351e1e5660ebd600bfe9",
+  "assembly_url":"http://api2.jane.transloadit.com/assemblies/ed70803b0ee2351e1e5660ebd600bfe9",
+  "bytes_received":1455195,
+  "bytes_expected":1455195,
+  "client_agent":"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13",
+  "client_ip":"91.64.59.17",
+  "client_referer":"http://localtransloadit.com/demos/video-thumbs/extract-from-encoding",
+  "start_date":"2011/02/07 12:54:07 GMT",
+  "upload_duration":6.89,
+  "execution_duration":2.653,
+  "fields":[],
+  "uploads":[],
+  "last_seq":9,
+  "results":{
+    "thumbnail": [
+      {"url": "http://example.com/images/thumb.jpg"}
+    ],
+    "medium": [
+      {"url": "http://example.com/images/medium.jpg"}
+    ],
+    "large": [
+      {"url": "http://example.com/images/large.jpg"}
+    ]
+  }
+
+}

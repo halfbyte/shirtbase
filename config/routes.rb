@@ -3,11 +3,15 @@ Shirtbase::Application.routes.draw do
 
   get "home/index"
 
-  resources :shirts
+  resources :shirts do
+    resources :images, :only => [:create]
+  end
   
   resources :users, :only => :index do
     resources :shirts
   end
+  
+  resources :mails, :only => [:create]
   
   resources :tags
 
