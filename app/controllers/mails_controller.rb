@@ -29,7 +29,7 @@ class MailsController < ApplicationController
           transloadit.assembly(
             :template_id => "42cb74a7389c45da9e3739d63ff06cc7",
             :fields => { :shirt_id => shirt.to_param },
-            :notify_url => shirt_images_path(shirt)
+            :notify_url => shirt_images_url(shirt)
           ).submit!(*attachments)
         end
       end
