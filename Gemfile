@@ -13,7 +13,6 @@ end
 group :production do
   gem 'pg'
   gem 'thin'
-  gem 'therubyracer-heroku', '~> 0.8.1.pre3'
 end
 
 # Asset template engines
