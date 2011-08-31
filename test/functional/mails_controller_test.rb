@@ -12,17 +12,17 @@ class MailsControllerTest < ActionController::TestCase
     end
     
     should "create a shirt" do
-      assert_difference "@user.shirts.count" do
+      assert_difference "@user.created_shirts.count" do
         post_mail
       end
     end
-    
+        
     should "send only images to transloadit" do
       Transloadit::Assembly.any_instance.expects(:submit!).with(@image_upload)
       post_mail
     end
     should "not create a shirt if no attachments" do
-      assert_no_difference "@user.shirts.count" do
+      assert_no_difference "@user.created_shirts.count" do
         post_mail(:attachments => 0, :"attachment-info" => "{}")
       end
     end

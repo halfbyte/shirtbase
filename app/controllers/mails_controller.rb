@@ -23,11 +23,11 @@ class MailsController < ApplicationController
           attachments.push(params[k])
         end
         unless attachments.empty?
-          shirt = user.shirts.build(
+          shirt = user.created_shirts.build(
             :name => subject,
             :description => text
           )
-          shirt.owners << user
+          shirt.owners << shirt.user
           if shirt.save
             transloadit.assembly(
               :template_id => "42cb74a7389c45da9e3739d63ff06cc7",
