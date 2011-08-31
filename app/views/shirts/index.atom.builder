@@ -12,7 +12,7 @@ atom_feed do |feed|
     feed.entry(shirt) do |entry|
       entry.title(shirt.name)
       entry.content(render(:partial => 'shirts/feed_item', :object => shirt, :as => :shirt), :type => 'html')
-      if(entry.author)
+      if(shirt.user)
         entry.author do |author|
           author.name(shirt.user.nickname)
         end
