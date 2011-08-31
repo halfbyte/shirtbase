@@ -15,25 +15,28 @@ class MailsController < ApplicationController
     match = to.match(/(.*)@.*/)
     if (user = User.find_by_mailbox(match[1]))
       attachment_count = params[:"attachments"].to_i
-      attachments = []
-      attachment_count.times do |i|
-        attachments.push(params["attachment#{i+1}"])
-      end
-      unless attachments.empty?
-        shirt = user.shirts.build(
-          :name => subject,
-          :description => text
-        )
-        shirt.owners << user
-        if shirt.save
-          transloadit.assembly(
-            :template_id => "42cb74a7389c45da9e3739d63ff06cc7",
-            :fields => { :shirt_id => shirt.to_param },
-            :notify_url => shirt_images_url(shirt)
-          ).submit!(*attachments)
+      if attachment_count > 0
+        attachment_info = JSON.parse(params[:"attachment-info"])
+        attachment_keys = attachment_info.select { |k,v| v['type'].match(/^image\//)}.map(&:first)
+        attachments = []
+        attachment_keys.each do |k|
+          attachments.push(params[k])
+        end
+        unless attachments.empty?
+          shirt = user.shirts.build(
+            :name => subject,
+            :description => text
+          )
+          shirt.owners << user
+          if shirt.save
+            transloadit.assembly(
+              :template_id => "42cb74a7389c45da9e3739d63ff06cc7",
+              :fields => { :shirt_id => shirt.to_param },
+              :notify_url => shirt_images_url(shirt)
+            ).submit!(*attachments)
+          end
         end
       end
-      
     end
     
     
