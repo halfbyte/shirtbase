@@ -3,6 +3,8 @@ class Shirt < ActiveRecord::Base
   has_many :shirt_ownerships
   has_many :owners, :through => :shirt_ownerships, :source => :user
   belongs_to :user
+  has_many :favorites
+  has_many :users_who_faved, :through => :favorites, :source => :user
   
   acts_as_taggable
   

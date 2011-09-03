@@ -24,5 +24,20 @@
     - if @shirt.user && @shirt.user == current_user
       %p
         = link_to "[EDIT]", edit_shirt_path(@shirt)
+        
+    %p
+      This shirt has been faved #{pluralize(@shirt.favorites.size, "Time", "Times")}
+      - if @shirt.favorites.size > 0 
+        by
+      = @shirt.users_who_faved.map{ |user| link_to user.nickname, user_shirts_path(user) }.join(", ").html_safe
+    - if signed_in?
+      %p
+        - unless @shirt.users_who_faved.include?(current_user)
+          = button_to "Fav", shirt_favorite_path(@shirt), :method => :post
+        - else
+          = button_to "Unfav", shirt_favorite_path(@shirt), :method => :delete
+        
+        
+      
   
         

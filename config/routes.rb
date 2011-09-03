@@ -5,6 +5,7 @@ Shirtbase::Application.routes.draw do
 
   resources :shirts do
     resources :images, :only => [:create]
+    resource :favorite, :only => [:create, :destroy]
   end
   
   resources :users, :only => :index do

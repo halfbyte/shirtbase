@@ -6,6 +6,9 @@ class ShirtTest < ActiveSupport::TestCase
   should have_many :shirt_ownerships
   should have_many :owners
   should belong_to :user
+  should have_many :favorites
+  should have_many :users_who_faved
+  
   should validate_presence_of :name
 
   should "have taggable methods" do

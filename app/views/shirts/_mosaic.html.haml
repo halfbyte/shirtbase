@@ -14,3 +14,5 @@
               anonymous
           .meta-tags
             = raw shirt.tag_list.map{|tag| link_to h(tag), tag_path(tag)}.join(", ")
+          .meta-favs
+            #{pluralize(shirt.favorites.size, "Fav", "Faves")}
