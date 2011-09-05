@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/amatsuda/kaminari.git
+  revision: 3236398bc7be0d218b487e8942dc76b7802c7242
+  specs:
+    kaminari (0.12.4)
+      rails (>= 3.0.0)
+
+GIT
   remote: https://github.com/chriseppstein/compass.git
   revision: 22e2458b77519e8eb8463170c1a1fe4bab105f3e
   branch: rails31
@@ -213,6 +220,7 @@ DEPENDENCIES
   heroku
   jquery-rails
   json
+  kaminari!
   mocha
   omniauth
   pg

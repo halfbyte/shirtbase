@@ -39,6 +39,8 @@ gem "transloadit"
 
 gem "json"
 
+gem 'kaminari', :git => 'https://github.com/amatsuda/kaminari.git'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
