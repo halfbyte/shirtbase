@@ -18,9 +18,8 @@
   <div class="field">
     <%= label_tag :image, "Photo" %>
     <%= file_field_tag :image %>
-    <%= hidden_field_tag :params, { auth: {key: "617f5b25c75f45f7a47bf6445527c2fb"}, template_id: "42cb74a7389c45da9e3739d63ff06cc7"}.to_json %>
+    <%= hidden_field_tag :params, { auth: {key: ENV['TRANSLOADIT_AUTH_KEY']}, template_id: "42cb74a7389c45da9e3739d63ff06cc7"}.to_json %>
   </div>
-
   <div class="field">
     <%= f.label :description %>
     <%= f.text_area :description, :placeholder => 'Please tell us the story of this shirt', :rows => 5 %>
