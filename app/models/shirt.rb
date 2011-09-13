@@ -15,8 +15,8 @@ class Shirt < ActiveRecord::Base
   
   attr_accessor :tweet, :want_tweet
   
-  def tweet=(tweet)
-    @tweet = truncate(tweet.gsub(/\[LINK TO SHIRT\]/, ''), :length => 115)
+  def tweet=(tweet_text)
+    @tweet = truncate(tweet_text.gsub(/ \[LINK TO SHIRT\]/, ''), :length => 115)
   end
   
   acts_as_taggable
