@@ -32,17 +32,19 @@
     <%= f.label :tag_list, "Tags" %>
     <%= f.text_field :tag_list, :placeholder => 'comma, separated, tags' %>
   </div>
-  <div class="field">
-    <label>Shall we tweet this for you?</label>
-  </div>
-  <div class="field checkbox">    
-    <%= f.check_box :want_tweet %>
-    <%= f.label :want_tweet, "Yes, please" %>
-  </div>
-  <div class="field">
-    <%= f.label :tweet, "This would be the text" %>
-    <%= f.text_area :tweet, :rows => 2 %>
-  </div>
+  <%- if @shirt.new_record? -%>
+    <div class="field">
+      <label>Shall we tweet this for you?</label>
+    </div>
+    <div class="field checkbox">    
+      <%= f.check_box :want_tweet %>
+      <%= f.label :want_tweet, "Yes, please" %>
+    </div>
+    <div class="field">
+      <%= f.label :tweet, "This would be the text" %>
+      <%= f.text_area :tweet, :rows => 2 %>
+    </div>
+  <%- end -%>
   <div class="actions">
     <%= f.submit %>
   </div>
