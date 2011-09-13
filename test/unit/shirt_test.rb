@@ -23,8 +23,8 @@ class ShirtTest < ActiveSupport::TestCase
       assert_not_nil shirt.tweet
     end
     should "tweet if want_tweet is set" do
-      Twitter.expects(:update).with('foobar http://example.com/foobar').once
-      shirt = Shirt.new(:name => 'foo', :want_tweet => '1', :tweet => 'foobar')
+      Twitter.expects(:update).with('added shirt foo to @outtacotton http://example.com/foobar').once
+      shirt = Shirt.new(:name => 'foo', :want_tweet => '1', :tweet => 'added shirt [SHIRT] to @outtacotton [URL]')
       shirt.send_tweet('http://example.com/foobar')
     end
   end

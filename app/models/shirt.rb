@@ -6,34 +6,35 @@ class Shirt < ActiveRecord::Base
   has_many :favorites
   has_many :users_who_faved, :through => :favorites, :source => :user
 
-  include ActionView::Helpers::TextHelper
-    
-  def initialize(*params)
-    super
-    create_tweet
-  end
-  
-  attr_accessor :want_tweet
-  attr_reader :tweet
-  
-  def tweet=(tweet_text)
-    @tweet = truncate(tweet_text, :length => 115)
-  end
-  
   acts_as_taggable
   
   validates :name, :presence => true
+  validate :validate_len_of_tweet
 
   has_friendly_id :name, :use_slug => true  
+
+
+  include ActionView::Helpers::TextHelper
+    
+  def initialize(*params)
+    create_tweet
+    super
+  end
+  
+  attr_accessor :want_tweet
+  attr_accessor :tweet  
   
   def send_tweet(url)
     return if @want_tweet.blank? || @want_tweet != '1'
+    return if @tweet.blank?
     logger.debug("About to send a tweet, woot!")
     Twitter.configure do |config|
       config.oauth_token = user.access_token
       config.oauth_token_secret = user.access_token_secret
     end
-    result = Twitter.update("#{@tweet} #{url}")    
+    tweet_text = @tweet.gsub(/\[SHIRT\]/, truncate(name, :length => 115 - short_tweet.length)).gsub(/\[LINK\]/, url)
+    
+    result = Twitter.update("#{tweet_text}")    
     logger.debug(result.inspect)
   rescue => e
     logger.error(e)
@@ -41,8 +42,17 @@ class Shirt < ActiveRecord::Base
   
 private
   def create_tweet
-    @tweet = "Look ma, my new shirt"
+    @tweet = "just added [SHIRT] to @outtacotton [LINK]"
   end
   
+  def short_tweet
+    @short_tweet ||= @tweet.gsub(/\[SHIRT\]/, '').gsub(/\[LINK\]/, '')
+  end
+  
+  def validate_len_of_tweet
+    if (115-short_tweet.length) < 10
+      errors.add(:tweet, 'Sorry, your tweet text is too long to make sense')
+    end
+  end
   
 end
