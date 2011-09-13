@@ -5,10 +5,7 @@ class TagsControllerTest < ActionController::TestCase
     setup do
       shirts(:standard).update_attribute(:tag_list, "foo, bar")
     end
-    
-    
-    
-    
+
     should "display page" do
       get :show, :id => 'foo'
       assert_response :success

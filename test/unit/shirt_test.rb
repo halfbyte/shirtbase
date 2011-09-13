@@ -15,5 +15,19 @@ class ShirtTest < ActiveSupport::TestCase
     s = Shirt.new
     assert s.respond_to?(:tag_list)
     assert s.respond_to?(:tag_list=)
-  end  
+  end
+  
+  context "tweeting a shirt" do
+    should "have a tweet after initializing" do
+      shirt = Shirt.new
+      assert_not_nil shirt.tweet
+    end
+    should "tweet if want_tweet is set" do
+      Twitter.expects(:update).with('foobar http://example.com/foobar').once
+      shirt = Shirt.new(:name => 'foo', :want_tweet => '1', :tweet => 'foobar')
+      shirt.send_tweet('http://example.com/foobar')
+    end
+  end
+  
+  
 end

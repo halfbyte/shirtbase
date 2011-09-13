@@ -57,9 +57,10 @@ class ShirtsController < ApplicationController
     end
     @shirt.user = current_user
     @shirt.owners << current_user
-
     respond_to do |format|
       if @shirt.save
+        @shirt.send_tweet(shirt_url(@shirt))
+        
         format.html { redirect_to user_shirts_path(current_user), notice: 'Shirt was successfully created.' }
         format.json { render json: @shirt, status: :created, location: @shirt }
       else

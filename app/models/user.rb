@@ -17,6 +17,16 @@ class User < ActiveRecord::Base
     end
   end
   
+  def self.by_oauth(auth)
+    user = User.find_by_provider_and_uid(auth["provider"], auth["uid"])
+    if user      
+      user.update_attributes(:access_token => auth["credentials"]["token"], :access_token_secret => auth["credentials"]["secret"])
+    else 
+      user = User.create_with_omniauth(auth)
+    end
+    user
+  end
+  
   def to_param
     nickname
   end

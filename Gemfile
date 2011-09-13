@@ -26,20 +26,14 @@ gem 'jquery-rails'
 
 gem 'omniauth'
 gem 'haml'
-
 gem "friendly_id", "~> 3.3.0.alpha2"
-
 gem "acts-as-taggable-on"
-
 gem "RedCloth"
-
 gem "heroku"
-
 gem "transloadit"
-
 gem "json"
-
 gem 'kaminari', :git => 'https://github.com/amatsuda/kaminari.git'
+gem 'twitter'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -49,6 +43,10 @@ gem 'kaminari', :git => 'https://github.com/amatsuda/kaminari.git'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :development do
+  gem 'annotate'
+end
 
 group :test do
   # Pretty printed test output
