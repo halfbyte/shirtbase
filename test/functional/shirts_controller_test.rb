@@ -54,7 +54,7 @@ class ShirtsControllerTest < ActionController::TestCase
     end
 
     should "should update shirt" do
-      put :update, id: @shirt.to_param, shirt: @shirt.attributes
+      put :update, id: @shirt.to_param, shirt: {description: "wooogooo"}
       assert_redirected_to user_shirts_path(users(:standard))
     end
 

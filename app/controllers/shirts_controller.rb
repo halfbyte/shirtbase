@@ -78,7 +78,7 @@ class ShirtsController < ApplicationController
       image = ShirtImage.from_transloadit(JSON.parse(params[:transloadit]))
       @shirt.shirt_images << image if image
     end
-
+    puts "until here"
     respond_to do |format|
       if @shirt.update_attributes(params[:shirt])
         format.html { redirect_to user_shirts_path(current_user), notice: 'Shirt was successfully updated.' }

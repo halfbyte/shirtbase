@@ -46,10 +46,11 @@ private
   end
   
   def short_tweet
-    @short_tweet ||= @tweet.gsub(/\[SHIRT\]/, '').gsub(/\[LINK\]/, '')
+    @short_tweet ||= @tweet.gsub(/\[SHIRT\]/, '').gsub(/\[LINK\]/, '') if @tweet
   end
   
   def validate_len_of_tweet
+    return if short_tweet.nil?
     if (115-short_tweet.length) < 10
       errors.add(:tweet, 'Sorry, your tweet text is too long to make sense')
     end
