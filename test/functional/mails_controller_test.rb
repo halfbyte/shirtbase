@@ -1,5 +1,5 @@
 require 'test_helper'
-
+require 'mail'
 class MailsControllerTest < ActionController::TestCase
   context "getting a mail" do
     setup do
@@ -30,7 +30,7 @@ class MailsControllerTest < ActionController::TestCase
   
   def post_mail(opts = {})
     attrs = {
-      :to => "#{@user.mailbox}@example.com",
+      :to => "Test <#{@user.mailbox}@example.com>",
       :subject => "The latest hot shirt",
       :text => 'This is a very cool shirt',
       :"attachment-info" => {:attachment2 => {:type => 'text/plain'}, :attachment1 => {:type => 'image/jpeg'} }.to_json,

@@ -8,12 +8,11 @@ class MailsController < ApplicationController
       :secret => ENV['TRANSLOADIT_AUTH_SECRET']
     )
 
-    to = params[:to]
+    to = Mail::Address.new(params[:to])
     subject = params[:subject]
     text = params[:text] || params[:html] # will be used as description
     
-    match = to.match(/(.*)@.*/)
-    if (user = User.find_by_mailbox(match[1]))
+    if (user = User.find_by_mailbox(to.local))
       attachment_count = params[:"attachments"].to_i
       if attachment_count > 0
         attachment_info = JSON.parse(params[:"attachment-info"])
