@@ -42,7 +42,7 @@ class ShirtsControllerTest < ActionController::TestCase
 
     should "should create shirt" do
       assert_difference('Shirt.count') do
-        post :create, shirt: @shirt.attributes
+        post :create, shirt: {:name => 'supershirt', :description => 'super description'}
       end
 
       assert_redirected_to user_shirts_path(users(:standard))

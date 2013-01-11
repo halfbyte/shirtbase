@@ -1,5 +1,6 @@
 class ShirtImage < ActiveRecord::Base
   belongs_to :shirt
+  attr_accessible :thumbnail_url, :medium_url, :large_url
   
   def self.from_transloadit(params)
     return nil if params['results'].nil? || params['results'].empty?

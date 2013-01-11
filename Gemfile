@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -15,16 +15,18 @@ group :production do
   gem 'thin'
 end
 
-# Asset template engines
-gem 'sass-rails', "~> 3.1.0.rc"
-gem 'compass', :git => 'https://github.com/chriseppstein/compass.git', :branch  => 'rails31'
-gem 'eleven40'
-gem 'coffee-script'
-gem 'uglifier'
-
-gem 'jquery-rails'
+group :assets do
+  # Asset template engines
+  gem 'sass-rails'
+  gem 'eleven40'
+  gem 'compass-rails'
+  gem 'coffee-script'
+  gem 'uglifier'
+  gem 'jquery-rails'
+end
 
 gem 'omniauth'
+gem 'omniauth-twitter'
 gem 'haml'
 gem "friendly_id", "~> 3.3.0.alpha2"
 gem "acts-as-taggable-on"
@@ -50,7 +52,7 @@ end
 
 group :test do
   # Pretty printed test output
-  gem 'turn', :require => false
+  # gem 'turn', :require => false
   gem 'shoulda'
   gem 'mocha'
 end

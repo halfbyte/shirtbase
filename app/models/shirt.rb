@@ -6,6 +6,8 @@ class Shirt < ActiveRecord::Base
   has_many :favorites
   has_many :users_who_faved, :through => :favorites, :source => :user
 
+  after_initialize :create_tweet
+
   acts_as_taggable
   
   validates :name, :presence => true
@@ -13,13 +15,14 @@ class Shirt < ActiveRecord::Base
 
   has_friendly_id :name, :use_slug => true  
 
+  attr_accessible :name, :want_tweet, :tweet, :description
 
   include ActionView::Helpers::TextHelper
     
-  def initialize(*params)
-    create_tweet
-    super
-  end
+  # def initialize(*params)
+  #   create_tweet
+  #   super
+  # end
   
   attr_accessor :want_tweet
   attr_accessor :tweet  
@@ -27,14 +30,13 @@ class Shirt < ActiveRecord::Base
   def send_tweet(url)
     return if @want_tweet.blank? || @want_tweet != '1'
     return if @tweet.blank?
-    logger.debug("About to send a tweet, woot!")
+    logger.debug("About to send a tweet, woot! ")
     Twitter.configure do |config|
       config.oauth_token = user.access_token
       config.oauth_token_secret = user.access_token_secret
     end
     tweet_text = @tweet.gsub(/\[SHIRT\]/, truncate(name, :length => 115 - short_tweet.length)).gsub(/\[LINK\]/, url)
-    
-    result = Twitter.update("#{tweet_text}")    
+    result = Twitter.update("#{tweet_text}")
     logger.debug(result.inspect)
   rescue => e
     logger.error(e)
@@ -42,7 +44,7 @@ class Shirt < ActiveRecord::Base
   
 private
   def create_tweet
-    @tweet = "just added [SHIRT] to @outtacotton [LINK]"
+    @tweet ||= "just added [SHIRT] to @outtacotton [LINK]"
   end
   
   def short_tweet
